@@ -1,5 +1,5 @@
 run('face-release1.0-basic/compile.m');
-
+addpath('./face-release1.0-basic');
 load face-release1.0-basic/face_p146_small.mat
 
 % 5 levels for each octave
@@ -16,10 +16,10 @@ else
     error('Can not recognize this model');
 end
 
-ims = dir('../../Data/*.jpg');
+ims = dir('../../../Data/*.jpg');
 for i = 1:length(ims),
     fprintf('testing: %d/%d\n', i, length(ims));
-    im = imread(['images/' ims(i).name]);
+    im = imread(['../../../Data/' ims(i).name]);
     clf; imagesc(im); axis image; axis off; drawnow;
     
     tic;
@@ -33,7 +33,10 @@ for i = 1:length(ims),
     % show all
     figure,showboxes(im, bs,posemap),title('All detections above the threshold');
     
+    figure,showBox(im, bs), title('Show bounding boxes');
+    
     fprintf('Detection took %.1f seconds\n',dettime);
+    display(bs)
     disp('press any key to continue');
     pause;
     close all;

@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-import os, shutil, json
+import os, shutil, json, pickle
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -62,6 +62,6 @@ for url in urls:
                 pass
 
             with open(folder_path+'/cast_info.dat', 'w+') as f2:
-                json.dump(actors, f2)
+                pickle.dump(actors, f2)
             #print(' ')
 
