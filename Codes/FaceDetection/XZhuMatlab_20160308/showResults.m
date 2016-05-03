@@ -52,7 +52,7 @@ for movie_dir = movies_dir
 
                 facetracker = cell(1, length(ims));
                 
-                for i = 1:length(ims)
+                for i = 1:min(1, length(ims))
                     
                     image_struct = struct();
                     image_struct.name = ims(i).name;
@@ -81,7 +81,9 @@ for movie_dir = movies_dir
                                 image_struct.bounding_box; tmp];
                         end
 
-                        %fprintf('Detection took %.1f seconds\n',dettime);
+                        fprintf('Detection took %.1f seconds\n',dettime);
+                        figure,showboxes(im, bs,posemap),title('All detections above the threshold');
+                        figure,showBox(im, bs), title('Show bounding boxes');
                     catch
                         warning(sprintf('Error occured on image %s.',...
                             ims(i).name));
