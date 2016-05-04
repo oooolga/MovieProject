@@ -30,15 +30,21 @@ for movie_dir = movies_dir
                 % get all images
                 curr_dir = strcat(image_location, actor_id, '/pics/');
                 mkdir(strcat('../../../Results/XZhu/', actor_id));
-                ims = dir(strcat(curr_dir, '*.jpg'));           
+                ims = dir(strcat(curr_dir, '*.jpg'));
+                infs = dir(strcat(curr_dir, '*.mat'));
 
                 facetracker = strcat(image_location, actor_id, '/facetrack.mat');
                 load(facetracker);
                 
-                for i = 1:3%length(ims)
+                
+                for i = 1:length(ims)
                     
                     try
-                        if i <length(ims)
+                        %if i <length(ims)
+                        info = strcat(curr_dir,infs(i).name);
+                        load(info);
+                        if length(picinfo.names) == 1
+                            
                             im = imread([curr_dir ims(i).name]);
                             bs = facetracker{i}.bs;
                             fig = saveBox(im, bs);
