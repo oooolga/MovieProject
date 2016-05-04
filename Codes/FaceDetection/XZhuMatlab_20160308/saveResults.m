@@ -38,10 +38,12 @@ for movie_dir = movies_dir
                 for i = 1:3%length(ims)
                     
                     try
-                        im = imread([curr_dir ims(i).name]);
-                        bs = facetracker{i}.bs;
-                        fig = saveBox(im, bs);
-                        saveas(fig,strcat('../../../Results/XZhu/', actor_id,'/', int2str(i), '.jpg'))
+                        if i <length(ims)
+                            im = imread([curr_dir ims(i).name]);
+                            bs = facetracker{i}.bs;
+                            fig = saveBox(im, bs);
+                            saveas(fig,strcat('../../../Results/XZhu/', actor_id,'/', int2str(i), '.jpg'))
+                        end
 
                         %fprintf('Detection took %.1f seconds\n',dettime);
                     catch
