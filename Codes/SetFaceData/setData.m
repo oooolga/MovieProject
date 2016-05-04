@@ -1,14 +1,12 @@
 clear; clc
-rng(123);
 
 dataLocation
-thres = 0.13;
-iter = 30;
+rng(seed);
 load(strcat(data_dir, 'anno.mat'))
 
 data_size = size(anno);
 
-data_set = cell(1);
+data_set = cell(0);
 
 for i = 1:data_size(1)
     imname = anno(i,1);
@@ -19,8 +17,8 @@ for i = 1:data_size(1)
     
     bounding_boxes = anno(i,2);
     bounding_boxes = bounding_boxes{1};
-    info.bs = cell(1);
-    info.false_bs = cell(1);
+    info.bs = cell(0);
+    info.false_bs = cell(0);
     
     img = imread([data_dir imname]);
     clf;
