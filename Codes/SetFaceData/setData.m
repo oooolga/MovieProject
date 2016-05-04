@@ -47,7 +47,7 @@ for i = 1:data_size(1)
         line([x1 x1 x2 x2 x1]', [y1 y2 y2 y1 y1]', 'color', 'b', ...
             'linewidth', 1);
         
-        for i = 1:iter
+        for c = 1:iter
             xb1 = randi(size(img,2)-x2+x1);
             yb1 = randi(size(img,1)-y2+y1);
             xb2 = xb1 + x2 - x1;
