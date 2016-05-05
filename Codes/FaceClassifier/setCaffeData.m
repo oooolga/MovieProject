@@ -17,7 +17,8 @@ for i = 1:length(data)
         fileID = test_fileID;
     end
     fileName = strcat(dir, int2str(i), '.jpg');
-    imwrite(data{i}, fileName);
+    img = imresize(data{i}, [250 250]);
+    imwrite(img, fileName);
     fprintf(fileID, sprintf('%s %d\n', fileName, label(i)));%fileName, '' ', int2str(label(i)), '\n'));
 end
 
