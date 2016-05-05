@@ -24,7 +24,7 @@ for i = 1:length(data_set)
         
         %figure(1);
         %imshow(img(y1:y2,x1:x2));
-        data{counter} = img(y1:y2,x1:x2);
+        data{counter} = img(y1:y2,x1:x2,:);
         label = [label 1];
         if j <= f_bs_len
             counter = counter + 1;
@@ -33,7 +33,7 @@ for i = 1:length(data_set)
             x2 = bs(2,1);
             y1 = bs(1,2);
             y2 = bs(2,2);
-            data{counter} = img(y1:y2,x1:x2);
+            data{counter} = img(y1:y2,x1:x2,:);
             label = [label 0];
         end
     end
