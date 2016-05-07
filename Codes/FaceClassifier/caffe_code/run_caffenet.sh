@@ -1,5 +1,5 @@
-./create_imagenet.sh
-./make_imagenet_mean.sh
+#./create_imagenet.sh
+#./make_imagenet_mean.sh
 echo "Output file name: "
 read FILENAME
 SAVEDIR=/ais/gobi4/characters/Results/caffe/
