@@ -4,8 +4,11 @@ globalVariables
 load(strcat(data_dir, 'data.mat'))
 load(strcat(data_dir, 'label.mat'))
 
-train_fileID = fopen(strcat(train_dir, 'label.txt'), 'wt');
-test_fileID = fopen(strcat(test_dir, 'label.txt'), 'wt');
+train_fileID = fopen(strcat(train_dir, '../train.txt'), 'wt');
+test_fileID = fopen(strcat(test_dir, '../val.txt'), 'wt');
+if restrict_length
+	data = data(1:num_data);
+end
 num_train = uint16(length(data) * train_test_ratio);
 
 for i = 1:length(data)
@@ -17,9 +20,11 @@ for i = 1:length(data)
         fileID = test_fileID;
     end
     fileName = strcat(dir, int2str(i), '.jpg');
-    img = imresize(data{i}, [250 250]);
+    img = imresize(data{i}, [resize_size resize_size]);
     imwrite(img, fileName);
-    fprintf(fileID, sprintf('%s %d\n', fileName, label(i)));%fileName, '' ', int2str(label(i)), '\n'));
+
+    tmpFileName = strcat(int2str(i), '.jpg');
+    fprintf(fileID, sprintf('%s %d\n', tmpFileName, label(i)));
 end
 
 fclose(train_fileID);
