@@ -61,6 +61,6 @@ GLOG_logtostderr=1 $TOOLS/convert_imageset.bin \
 
 cp -r ./train_lmdb $EXAMPLE
 cp -r ./val_lmdb $EXAMPLE 
-rm -rf ./val_lmdb
-rm -rf ./train_lmdb
+#rm -rf ./val_lmdb
+#rm -rf ./train_lmdb
 echo "Done."

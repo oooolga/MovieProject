@@ -2,11 +2,10 @@
 # Compute the mean image from the imagenet training lmdb
 # N.B. this is available in data/ilsvrc12
 
-EXAMPLE=examples/imagenet
-DATA=data/ilsvrc12
-TOOLS=build/tools
+EXAMPLE=/ais/gobi4/characters/Data/afw/
+DATA=/ais/gobi4/characters/Data/afw/
+TOOLS=/pkgs/caffe/bin
 
-$TOOLS/compute_image_mean $EXAMPLE/ilsvrc12_train_lmdb \
-  $DATA/imagenet_mean.binaryproto
-
+$TOOLS/compute_image_mean.bin ./train_lmdb ./mean.binaryproto
+cp ./mean.binaryproto DATA
 echo "Done."
