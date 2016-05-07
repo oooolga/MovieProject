@@ -2,14 +2,14 @@
 # Create the imagenet lmdb inputs
 # N.B. set the path to the imagenet train + val data dirs
 
-rm -rf /ais/gobi4/characters/Data/afw/train_lmdb
-rm -rf /ais/gobi4/characters/Data/afw/val_lmdb
+DATA=/ais/gobi4/characters/Data/afw/
+EXAMPLE=/ais/gobi4/characters/Data/afw/caffe_model/
+TOOLS=/pkgs/caffe/bin
+
+rm -rf $EXAMPLE/train_lmdb
+rm -rf $EXAMPLE/val_lmdb
 rm -rf ./val_lmdb
 rm -rf ./train_lmdb
-
-DATA=/ais/gobi4/characters/Data/afw/
-EXAMPLE=/ais/gobi4/characters/Data/afw/
-TOOLS=/pkgs/caffe/bin
 
 TRAIN_DATA_ROOT=/ais/gobi4/characters/Data/afw/train/
 VAL_DATA_ROOT=/ais/gobi4/characters/Data/afw/val/
