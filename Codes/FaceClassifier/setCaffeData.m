@@ -20,7 +20,11 @@ for i = 1:length(data)
         fileID = test_fileID;
     end
     fileName = strcat(dir, int2str(i), '.jpg');
-    img = imresize(data{i}, [resize_size resize_size]);
+    if resize
+        img = imresize(data{i}, [resize_size resize_size]);
+    else
+        img = data{i};
+    end
     imwrite(img, fileName);
 
     tmpFileName = strcat(int2str(i), '.jpg');
