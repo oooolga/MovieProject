@@ -54,9 +54,9 @@ for i = 1:data_size(1)
             h = uint16((rand * range + lower_thres) * (y2-y1));
             w = uint16((rand * range + lower_thres) * (x2-x1));
             while true
-                xc1 = (x1+x2)/2 - randi(w);
+                xc1 = max(1, (x1+x2)/2 - randi(w));
                 xc2 = min(size(img,2), xc1+w);
-                yc1 = (y1+y2)/2 - randi(h);
+                yc1 = max(1, (y1+y2)/2 - randi(h));
                 yc2 = min(size(img,1), yc1+h);
                 
                 xc1 = double(xc1); yc1 = double(yc1);
@@ -121,6 +121,7 @@ for i = 1:data_size(1)
                 if ratio < false_thres
                     line([xb1 xb1 xb2 xb2 xb1]', [yb1 yb2 yb2 yb1 yb1]', 'color', 'r', ...
                 'linewidth', 1);
+                    xb1 = uint16(xb1); xb2 = uint16(xb2); yb1 = uint16(yb1); yb2 = uint16(yb2);
                     info.false_bs{counter} = [xb1 yb1; xb2 yb2];
                     counter = counter + 1;
                     break
