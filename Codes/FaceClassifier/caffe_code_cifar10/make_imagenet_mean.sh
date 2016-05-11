@@ -10,3 +10,7 @@ DBTYPE=lmdb
 $TOOLS/compute_image_mean.bin -backend=$DBTYPE ./cifar10_train_lmdb ./mean.binaryproto
 cp ./mean.binaryproto $DATA
 echo "Done."
+
+$TOOLS/compute_image_mean.bin -backend=$DBTYPE ./cifar10_test_lmdb ./test_mean.binaryproto
+cp ./test_mean.binaryproto $DATA
+echo "DONE"
