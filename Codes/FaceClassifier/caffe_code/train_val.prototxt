@@ -22,7 +22,7 @@ layer {
 #  }
   data_param {
     source: "./train_lmdb"
-    batch_size: 256
+    batch_size: 32
     backend: LMDB
   }
 }
@@ -49,7 +49,7 @@ layer {
 #  }
   data_param {
     source: "./val_lmdb"
-    batch_size: 50
+    batch_size: 32
     backend: LMDB
   }
 }
