@@ -3,6 +3,9 @@ import os
 
 import numpy as np
 
+#import warnings
+#warnings.filterwarnings("ignore")
+
 MODEL_FILE = '/ais/gobi4/characters/Results/caffe_cifar10/default_20160511_1208/cifar10_full.prototxt'
 PRETRAINED =  '/ais/gobi4/characters/Results/caffe_cifar10/default_20160511_1208/snapshots/cifar10_full_iter_70000.caffemodel.h5'
 TEST_PATH = '/ais/gobi4/characters/Data/afw/'
@@ -22,6 +25,9 @@ transformer.set_channel_swap('data', (2,1,0))
 mean_tensor = np.load(MEAN_FILE_PATH)
 print mean_tensor.shape
 
+pred = []
+truth = []
+
 with open(TEST_PATH+'val.txt', 'r') as f:
 	for line in f:
 		filename = line.strip().split()[0]
@@ -32,5 +38,11 @@ with open(TEST_PATH+'val.txt', 'r') as f:
 		net.blobs['data'].data[...] = transformed_image
 		output = net.forward()
 		output_prob = output['prob'][0]
-		print 'predicted class is:', output_prob.argmax()
-		print 'real class is:', label
+
+		truth.append(output_prob.argmax())
+		pred.append(label)
+		print(filename + '\tprediction: ' + str(truth[-1]) + '\treal: ' + str(label))
+
+from sklearn.metrics import classification_report
+target_names = ['face', 'non-face']
+print(classification_report(truth, pred, target_names=target_names))
