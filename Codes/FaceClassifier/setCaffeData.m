@@ -25,6 +25,8 @@ for i = 1:length(data)
     else
         img = data{i};
     end
+
+    img = uint8(img);
     imwrite(img, fileName);
 
     tmpFileName = strcat(int2str(i), '.jpg');
