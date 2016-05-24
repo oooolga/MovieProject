@@ -6,10 +6,10 @@ DATA=/ais/gobi4/characters/Data/afw
 EXAMPLE=/ais/gobi4/characters/Data/afw/caffe_model/
 TOOLS=/pkgs/caffe/bin
 
-rm -rf $EXAMPLE/cifar10_train_lmdb
-rm -rf $EXAMPLE/cifar10_test_lmdb
-rm -rf ./cifar10_train_lmdb
-rm -rf ./cifar10_test_lmdb
+rm -rf $EXAMPLE/train_lmdb
+rm -rf $EXAMPLE/test_lmdb
+rm -rf ./train_lmdb
+rm -rf ./test_lmdb
 
 TRAIN_DATA_ROOT=$DATA/train/
 VAL_DATA_ROOT=$DATA/val/
@@ -47,7 +47,7 @@ GLOG_logtostderr=1 $TOOLS/convert_imageset.bin \
     --shuffle \
     $TRAIN_DATA_ROOT \
     $DATA/train.txt \
-    ./cifar10_train_lmdb
+    ./train_lmdb
 
 echo "Creating val lmdb..."
 
@@ -57,10 +57,10 @@ GLOG_logtostderr=1 $TOOLS/convert_imageset.bin \
     --shuffle \
     $VAL_DATA_ROOT \
     $DATA/val.txt \
-    ./cifar10_test_lmdb
+    ./test_lmdb
 
-cp -r ./cifar10_train_lmdb $EXAMPLE
-cp -r ./cifar10_test_lmdb $EXAMPLE 
-#rm -rf ./val_lmdb
+cp -r ./train_lmdb $EXAMPLE
+cp -r ./test_lmdb $EXAMPLE 
+#rm -rf ./test_lmdb
 #rm -rf ./train_lmdb
 echo "Done."

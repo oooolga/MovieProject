@@ -11,7 +11,7 @@ layer {
     mean_file: "./mean.binaryproto"
   }
   data_param {
-    source: "./cifar10_train_lmdb"
+    source: "./train_lmdb"
     batch_size: 32
     backend: LMDB
   }
@@ -28,7 +28,7 @@ layer {
     mean_file: "./mean.binaryproto"
   }
   data_param {
-    source: "./cifar10_test_lmdb"
+    source: "./test_lmdb"
     batch_size: 32
     backend: LMDB
   }

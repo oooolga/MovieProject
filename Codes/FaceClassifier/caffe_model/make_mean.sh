@@ -7,10 +7,10 @@ DATA=/ais/gobi4/characters/Data/afw/caffe_model
 TOOLS=/pkgs/caffe/bin
 DBTYPE=lmdb
 
-$TOOLS/compute_image_mean.bin -backend=$DBTYPE ./cifar10_train_lmdb ./mean.binaryproto
+$TOOLS/compute_image_mean.bin -backend=$DBTYPE ./train_lmdb ./mean.binaryproto
 cp ./mean.binaryproto $DATA
 echo "Done."
 
-$TOOLS/compute_image_mean.bin -backend=$DBTYPE ./cifar10_test_lmdb ./test_mean.binaryproto
+$TOOLS/compute_image_mean.bin -backend=$DBTYPE ./test_lmdb ./test_mean.binaryproto
 cp ./test_mean.binaryproto $DATA
-echo "DONE"
+echo "Done."
