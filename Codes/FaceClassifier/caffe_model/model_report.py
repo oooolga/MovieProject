@@ -7,10 +7,10 @@ import numpy as np
 
 #import warnings
 #warnings.filterwarnings("ignore")
-import pdb
+#import pdb
 
-MODEL_FILE = './cifar10_full.prototxt'
-PRETRAINED =  './snapshots/cifar10_iter_60000.caffemodel.h5'
+MODEL_FILE = './deploy.prototxt'
+PRETRAINED =  './snapshots/_iter_40000.caffemodel.h5'
 TEST_PATH = '/ais/gobi4/characters/Data/afw/'
 MEAN_FILE_PATH = './mean.npy'
 
@@ -30,7 +30,7 @@ mean_tensor = np.load(MEAN_FILE_PATH).mean(1).mean(1)
 #transformer.set_transpose('data', (2,0,1))
 #transformer.set_raw_scale('data', 255) 
 #transformer. ('data', (2,1,0))
-pdb.set_trace()
+#pdb.set_trace()
 net = caffe.Classifier(MODEL_FILE, PRETRAINED, image_dims=(256,256), mean=mean_tensor,
 	input_scale=None, raw_scale=255.0, channel_swap=(2,1,0))
 
