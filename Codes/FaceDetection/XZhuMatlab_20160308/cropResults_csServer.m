@@ -4,7 +4,7 @@ data_location = '/ais/gobi4/characters/Data/movies/';
 image_location = '/ais/gobi4/characters/imdb/';
 movies_dir = dir(data_location);
 movies_dir = {movies_dir.name};
-movies_dir(ismember(movies_dir, {'.','..','.DS_Store'})) = [];
+movies_dir(ismember(movies_dir, {'.','..','.DS_Store', 'imdb_crop'})) = [];
 
 image_dir = dir(image_location);
 image_dir = {image_dir.name};
@@ -50,7 +50,7 @@ for movie_dir = movies_dir
                             bs = facetracker{i}.bs;
                             for j = 1:length(bs)
                                 fig = cropBox(im, bs(j));
-                                imwrite(fig,sprintf('/ais/gobi4/characters/Results/XZhuTwo/%s%s_%s.jpg', actor_id,...
+                                imwrite(fig,sprintf('/ais/gobi4/characters/Data/movies/imdb_crop/%s%s_%s.jpg', actor_id,...
                                     int2str(i), int2str(j)))
                             end
                         end
