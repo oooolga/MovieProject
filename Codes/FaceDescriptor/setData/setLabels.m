@@ -21,4 +21,4 @@ for file_i = 1:length(files)
 	last_name = face_name;
 end
 
-save(strcat('data_dir', '/../face_sort_by_name_labels.mat'), face_labels)
+save(strcat(data_dir, '/../face_sort_by_name_labels.mat'), 'face_labels')
