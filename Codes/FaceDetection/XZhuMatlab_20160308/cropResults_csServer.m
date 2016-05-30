@@ -50,14 +50,14 @@ for movie_dir = movies_dir
                             bs = facetracker{i}.bs;
                             for j = 1:length(bs)
                                 fig = cropBox(im, bs(j));
-                                imwrite(fig,sprintf('/ais/gobi4/characters/Data/movies/imdb_crop/%s%s_%s.jpg', actor_id,...
+                                imwrite(fig,sprintf('/ais/gobi4/characters/Data/IMDB_processed/%s%s_%s.jpg', actor_id,...
                                     int2str(i), int2str(j)))
                             end
                         end
-                        %fprintf('Detection took %.1f seconds\n',dettime);
+                        
                     catch
-                        %warning(sprintf('Error occured on image %s.',...
-                        %    ims(i).name));
+                        warning(sprintf('Error occured on image %s.',...
+                            ims(i).name));
                     end
                 end
                 

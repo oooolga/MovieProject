@@ -13,6 +13,7 @@ MODEL_FILE = './deploy.prototxt'
 PRETRAINED =  './snapshots/_iter_40000.caffemodel.h5'
 TEST_PATH = '/ais/gobi4/characters/Data/afw/'
 MEAN_FILE_PATH = './mean.npy'
+DETAIL_REPORT = False
 
 caffe.set_mode_gpu()
 #net = caffe.Net(MODEL_FILE, PRETRAINED, caffe.TEST)
@@ -65,8 +66,9 @@ with open(TEST_PATH+'val.txt', 'r') as f:
 
 		truth.append(label)
 		pred.append(cls_id)
-		print(prob)
-		print(filename + '\tprediction: ' + str(cls_id) + '\treal: ' + str(label))
+		if DETAIL_REPORT:
+			print(prob)
+			print(filename + '\tprediction: ' + str(cls_id) + '\treal: ' + str(label))
 		#pdb.set_trace()
 
 from sklearn.metrics import classification_report
