@@ -19,6 +19,30 @@ def setData(*arg):
 	
 	return data, label
 
+def writeData(writeFiles, data, label, randomize=True):
+	'''
+	writeData(list, list, list, bool) -> None
+
+	Return whether it could successfully writing to writeDir.
+	'''
+	if randomize:
+		import random
+		ind = range(len(data))
+		random.shuffle(ind)
+		shuffled_data = [data[i] for i in ind]
+		shuffled_label = [label[i] for i in ind]
+		label = shuffled_label; data = shuffled_data
+
+	with open(writeFiles[0], 'w') as f1:
+		with open(writeFiles[1], 'w') as f2:
+			for d_i in range(len(data)):
+				d = data[d_i].split(' ')
+				f1.write(d[0] + DATA_SUFFIX + ' ' + str(label[d_i]) + '\n')
+				f2.write(d[1] + DATA_SUFFIX + ' ' + str(label[d_i]) + '\n')
+
+
+
+
 if __name__ == '__main__':
 	from globalVariables import *
 	import pdb
@@ -26,4 +50,7 @@ if __name__ == '__main__':
 	train_data, train_label = setData(TRAIN_SAME_FILE, 1, TRAIN_DIFF_FILE, 0)
 	test_data, test_label = setData(TEST_SAME_FILE, 1, TEST_DIFF_FILE, 0)
 
-	pdb.set_trace()
+	writeData([DATA_DIR+'train1.txt', DATA_DIR+'train2.txt'],
+		train_data, train_label)
+	writeData([DATA_DIR+'test1.txt', DATA_DIR+'test2.txt'],
+		test_data, test_label)
