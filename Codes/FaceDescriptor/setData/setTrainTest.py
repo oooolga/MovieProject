@@ -1,3 +1,5 @@
+from globalVariables import *
+
 def setData(*arg):
 	'''
 	setData(file_path, label, file_path, label, ...) -> list, list
@@ -35,22 +37,25 @@ def writeData(writeFiles, data, label, randomize=True):
 
 	with open(writeFiles[0], 'w') as f1:
 		with open(writeFiles[1], 'w') as f2:
-			for d_i in range(len(data)):
-				d = data[d_i].split(' ')
-				f1.write(d[0] + DATA_SUFFIX + ' ' + str(label[d_i]) + '\n')
-				f2.write(d[1] + DATA_SUFFIX + ' ' + str(label[d_i]) + '\n')
+			with open(writeFiles[-1], 'w') as f:
+				for d_i in range(len(data)):
+					d = data[d_i].split(' ')
+					f1.write(d[0] + DATA_SUFFIX + ' ' + str(label[d_i]) + '\n')
+					f.write(d[0] + DATA_SUFFIX + ' ' + str(label[d_i]) + '\n')
+					f2.write(d[1] + DATA_SUFFIX + ' ' + str(label[d_i]) + '\n')
+					f.write(d[1] + DATA_SUFFIX + ' ' + str(label[d_i]) + '\n')
 
 
 
 
 if __name__ == '__main__':
-	from globalVariables import *
+	
 	import pdb
 
 	train_data, train_label = setData(TRAIN_SAME_FILE, 1, TRAIN_DIFF_FILE, 0)
 	test_data, test_label = setData(TEST_SAME_FILE, 1, TEST_DIFF_FILE, 0)
 
-	writeData([DATA_DIR+'train1.txt', DATA_DIR+'train2.txt'],
+	writeData([DATA_DIR+'train1.txt', DATA_DIR+'train2.txt', DATA_DIR+'train.txt'],
 		train_data, train_label)
-	writeData([DATA_DIR+'test1.txt', DATA_DIR+'test2.txt'],
+	writeData([DATA_DIR+'test1.txt', DATA_DIR+'test2.txt', DATA_DIR+'test.txt'],
 		test_data, test_label)

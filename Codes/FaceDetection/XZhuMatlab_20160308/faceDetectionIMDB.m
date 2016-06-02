@@ -16,7 +16,7 @@ addpath('./face-release1.0-basic');
 load face-release1.0-basic/face_p146_small.mat
 
 % Set up model 5 levels for each octave
-model.interval = 5;
+model.interval = interval;
 % Set up the threshold
 model.thresh = min(threshold, model.thresh);
 
