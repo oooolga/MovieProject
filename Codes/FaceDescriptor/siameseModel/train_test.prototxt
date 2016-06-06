@@ -8,8 +8,6 @@ layer {
 		phase: TRAIN
 	}
 	transform_param {
-		mirror: true
-		crop_size: 227
 		mean_file: "mean.binaryproto"
 	}
 	data_param {
@@ -28,8 +26,6 @@ layer {
 		phase: TRAIN
 	}
 	transform_param {
-		mirror: true
-		crop_size: 227
 		mean_file: "mean.binaryproto"
 	}
 	data_param {
@@ -48,13 +44,11 @@ layer {
 		phase: TEST
 	}
 	transform_param {
-		mirror: false
-		crop_size: 227
 		mean_file: "mean.binaryproto"
 	}
 	data_param {
 		source: "./test1_lmdb"
-		batch_size: 320
+		batch_size: 32
 		backend: LMDB
 	}
 }
@@ -68,13 +62,11 @@ layer {
 		phase: TEST
 	}
 	transform_param {
-		mirror: false
-		crop_size: 227
 		mean_file: "mean.binaryproto"
 	}
 	data_param {
 		source: "./test2_lmdb"
-		batch_size: 320
+		batch_size: 32
 		backend: LMDB
 	}
 }
@@ -87,10 +79,12 @@ layer {
 	param {
 		lr_mult: 1
 		decay_mult: 1
+		name: "conv1_w"
 	}
 	param {
 		lr_mult: 2
 		decay_mult: 0
+		name: "conv1_b"
 	}
 	convolution_param {
 		num_output: 128
@@ -105,8 +99,6 @@ layer {
 			value: 0
 		}
 	}
-	param: "conv1_w"
-	param: "conv1_b"
 }
 layer {
 	name: "relu1A"
@@ -123,10 +115,12 @@ layer {
 	param {
 		lr_mult: 1
 		decay_mult: 1
+		name: "conv1_w"
 	}
 	param {
 		lr_mult: 2
 		decay_mult: 0
+		name: "conv1_b"
 	}
 	convolution_param {
 		num_output: 128
@@ -141,8 +135,6 @@ layer {
 			value: 0
 		}
 	}
-	param: "conv1_w"
-	param: "conv1_b"
 }
 layer {
 	name: "relu1B"
@@ -205,10 +197,12 @@ layer {
 	bottom: "pool1A"
 	top: "conv2A"
 	param {
+		name: "conv2_w"
 		lr_mult: 1
 		decay_mult: 1
 	}
 	param {
+		name: "conv2_b"
 		lr_mult: 2
 		decay_mult: 0
 	}
@@ -223,11 +217,9 @@ layer {
 		}
 		bias_filler {
 			type: "constant"
-			value: 0.1
+			value: 0
 		}
 	}
-	param: "conv2_w"
-	param: "conv2_b"
 }
 layer {
 	name: "relu2A"
@@ -242,10 +234,12 @@ layer {
 	bottom: "pool1B"
 	top: "conv2B"
 	param {
+		name: "conv2_w"
 		lr_mult: 1
 		decay_mult: 1
 	}
 	param {
+		name: "conv2_b"
 		lr_mult: 2
 		decay_mult: 0
 	}
@@ -260,11 +254,9 @@ layer {
 		}
 		bias_filler {
 			type: "constant"
-			value: 0.1
+			value: 0
 		}
 	}
-	param: "conv2_w"
-	param: "conv2_b"
 }
 layer {
 	name: "relu2B"
@@ -327,10 +319,12 @@ layer {
 	bottom: "pool2A"
 	top: "conv3A"
 	param {
+		name: "conv3_w"
 		lr_mult: 1
 		decay_mult: 1
 	}
 	param {
+		name: "conv3_b"
 		lr_mult: 2
 		decay_mult: 0
 	}
@@ -347,8 +341,6 @@ layer {
 			value: 0
 		}
 	}
-	param: "conv3_w"
-	param: "conv3_b"
 }
 layer {
 	name: "relu3A"
@@ -363,10 +355,12 @@ layer {
 	bottom: "pool2B"
 	top: "conv3B"
 	param {
+		name: "conv3_w"
 		lr_mult: 1
 		decay_mult: 1
 	}
 	param {
+		name: "conv3_b"
 		lr_mult: 2
 		decay_mult: 0
 	}
@@ -383,8 +377,6 @@ layer {
 			value: 0
 		}
 	}
-	param: "conv3_w"
-	param: "conv3_b"
 }
 layer {
 	name: "relu3B"
@@ -401,10 +393,12 @@ layer {
 	param {
 		lr_mult: 1
 		decay_mult: 1
+		name: "conv4_w"
 	}
 	param {
 		lr_mult: 2
 		decay_mult: 0
+		name: "conv4_b"
 	}
 	convolution_param {
 		num_output: 384
@@ -417,11 +411,9 @@ layer {
 		}
 		bias_filler {
 			type: "constant"
-			value: 1
+			value: 0
 		}
 	}
-	param: "conv4_w"
-	param: "conv4_b"
 }
 layer {
 	name: "relu4A"
@@ -438,10 +430,12 @@ layer {
 	param {
 		lr_mult: 1
 		decay_mult: 1
+		name: "conv4_w"
 	}
 	param {
 		lr_mult: 2
 		decay_mult: 0
+		name: "conv4_b"
 	}
 	convolution_param {
 		num_output: 384
@@ -454,11 +448,9 @@ layer {
 		}
 		bias_filler {
 			type: "constant"
-			value: 1
+			value: 0
 		}
 	}
-	param: "conv4_w"
-	param: "conv4_b"
 }
 layer {
 	name: "relu4B"
@@ -475,10 +467,12 @@ layer {
 	param {
 		lr_mult: 1
 		decay_mult: 1
+		name: "conv5_w"
 	}
 	param {
 		lr_mult: 2
 		decay_mult: 0
+		name: "conv5_b"
 	}
 	convolution_param {
 		num_output: 256
@@ -491,11 +485,9 @@ layer {
 		}
 		bias_filler {
 			type: "constant"
-			value: 1
+			value: 0
 		}
 	}
-	param: "conv5_w"
-	param: "conv5_b"
 }
 layer {
 	name: "relu5A"
@@ -512,10 +504,12 @@ layer {
 	param {
 		lr_mult: 1
 		decay_mult: 1
+		name: "conv5_w"
 	}
 	param {
 		lr_mult: 2
 		decay_mult: 0
+		name: "conv5_b"
 	}
 	convolution_param {
 		num_output: 256
@@ -528,11 +522,9 @@ layer {
 		}
 		bias_filler {
 			type: "constant"
-			value: 1
+			value: 0
 		}
 	}
-	param: "conv5_w"
-	param: "conv5_b"
 }
 layer {
 	name: "relu5B"
@@ -571,10 +563,12 @@ layer {
 	bottom: "pool5A"
 	top: "fc6A"
 	param {
+		name: "fc6_w"
 		lr_mult: 1
 		decay_mult: 1
 	}
 	param {
+		name: "fc6_b"
 		lr_mult: 2
 		decay_mult: 0
 	}
@@ -586,11 +580,9 @@ layer {
 		}
 		bias_filler {
 			type: "constant"
-			value: 1
+			value: 0
 		}
 	}
-	param: "fc6_w"
-	param: "fc6_b"
 }
 layer {
 	name: "relu6A"
@@ -616,10 +608,12 @@ layer {
 	param {
 		lr_mult: 1
 		decay_mult: 1
+		name: "fc6_w"
 	}
 	param {
 		lr_mult: 2
 		decay_mult: 0
+		name: "fc6_b"
 	}
 	inner_product_param {
 		num_output: 4096
@@ -629,11 +623,9 @@ layer {
 		}
 		bias_filler {
 			type: "constant"
-			value: 1
+			value: 0
 		}
 	}
-	param: "fc6_w"
-	param: "fc6_b"
 }
 layer {
 	name: "relu6B"
@@ -659,10 +651,12 @@ layer {
 	param {
 		lr_mult: 1
 		decay_mult: 1
+		name: "fc7_w"
 	}
 	param {
 		lr_mult: 2
 		decay_mult: 0
+		name: "fc7_b"
 	}
 	inner_product_param {
 		num_output: 4096
@@ -672,11 +666,9 @@ layer {
 		}
 		bias_filler {
 			type: "constant"
-			value: 1
+			value: 0
 		}
 	}
-	param: "fc6_w"
-	param: "fc6_b"
 }
 layer {
 	name: "relu7A"
@@ -702,10 +694,12 @@ layer {
 	param {
 		lr_mult: 1
 		decay_mult: 1
+		name: "fc7_w"
 	}
 	param {
 		lr_mult: 2
 		decay_mult: 0
+		name: "fc7_b"
 	}
 	inner_product_param {
 		num_output: 4096
@@ -715,11 +709,9 @@ layer {
 		}
 		bias_filler {
 			type: "constant"
-			value: 1
+			value: 0
 		}
 	}
-	param: "fc6_w"
-	param: "fc6_b"
 }
 layer {
 	name: "relu7B"
@@ -739,13 +731,12 @@ layer {
 
 layer {
 	name: "loss"
-	type: CONTRASTIVE_LOSS
+	type: "ContrastiveLoss"
 	contrastive_loss_param {
 		margin: 1.0
 	}
 	bottom: "fc7A"
 	bottom: "fc7B"
-	bottom: "sim_labels"
 	bottom: "sim_labels"
 	top: "loss"
 }
